@@ -1,0 +1,367 @@
+//Name: Matt Maynes
+//Title: Theatre Seats
+//Date: 18/04/2017
+//Desc: This program is meant to loop infinitely, to take the users input and to reserve a seat in a theatre based upon price or the location. If the location is specified it will ask for the seat and 
+//row but if price is the way to reserve it will randomly select a seat from the price range specified.
+import java.util.Scanner;
+//imports the java class scanner to the class assignment3
+public class theatreSeats {//beginning of the class Assignment3
+
+	public static void main(String[] args) {
+		//beginning of the main method
+		Scanner keyboard=new Scanner(System.in);
+		//initializes the object keyboard as a Scanner object through the class Scanner for user input
+		char holder;
+		//declares holder as char data type to hold the randomly found number finding a seat. This will be used as a middleman when switching the beginning randomly generated integer to a string
+		String seat;
+		//This declares one variables, seat for the seat they will choose late
+		boolean finish=false,totalFinish=false;
+		//This declares three boolean variables, finish is initialized as false and will be used to find when a seat has been randomly found by price, totalFinish will be used to find when your whole program has finish and is initialized to false since it is not done 
+		int choice=0;
+		//this declares the variable choice as an integer data type and is used take the users input and see if they want to buy a ticket based on price or specific placement
+	     int[][] seats = { { 10, 10, 10, 10, 10, 10, 10, 10, 10, 10 },
+	 			{ 10, 10, 10, 10, 10, 10, 10, 10, 10, 10 },
+	 			{ 10, 10, 10, 10, 10, 10, 10, 10, 10, 10 },
+	 			{ 10, 10, 20, 20, 20, 20, 20, 20, 10, 10 },
+	 			{ 10, 10, 20, 20, 20, 20, 20, 20, 10, 10 },
+	 			{ 10, 10, 20, 20, 20, 20, 20, 20, 10, 10 },
+	 			{ 20, 20, 30, 30, 40, 40, 30, 30, 20, 20 },
+	 			{ 20, 30, 30, 40, 50, 50, 40, 30, 30, 20 },
+	 			{ 30, 40, 50, 50, 50, 50, 50, 50, 40, 30 } };
+	     //declares a 2-dimensional array names seats for integer data type and initializes with the prices of each seat. This will be used as a representation of the theatre
+	     System.out.println("                        SEATS");
+	     //used for formatting, this is the title of the table
+	     System.out.println("        A   B   C   D   E   F   G   H   I   J   ");
+	     //Used for formatting, displays the column Letters for each column
+	     for(int x=0;x<seats.length;x++)
+	    	 //This for loop goes through the length of the row of seats 
+	     {
+	    	System.out.print("Row "+(seats.length-(x))+"  ");
+	    	//This prompts the user giving the row number for the table
+	    	for(int i=0;i<seats[x].length;i++)
+	    	{
+	    		//This for loop loops through the columns at row x and is used to display the elemtents in that row    			
+	    		System.out.print(seats[x][i]+"  ");
+	    		//This statement is used to print out the element at the row x and column i and a space so a table is created
+	    	} 
+	    	System.out.println();
+	    	//increments by a line to start next row
+	     }
+	     System.out.println("\nThe above is a bird's eye view of all the seating available\n"
+	     		+ "at Corpus Christi Theatre for the Arts. Row 1 is closest to\n"
+	     		+ "the stage while row 9 represents the back of the theatre.\n"
+	     		+ "You can either choose a seat by entering the row and seat\n"
+	     		+ "letter, or you can choose a seat by entering a price.\n");
+	     //prompts the user on what the table is and what the program is supposed to do(reserving a seat by price or location)
+	     Outer:
+	    	 //labels the while loop as Outer so we can skip back to this if we need to skip an iteration
+	     while(totalFinish==false)
+	    	 // while loop will iterate until the program has finished (no more seats or the user will be done) but this was not part of code so the program will never stop iterating
+	     {
+	    		System.out.print("Enter 1 to choose by seat or 2 to choose by price: ");
+	    		//prompts the user to choose 1 or 2 to either choose a seat by price or location
+	     		choice=keyboard.nextInt();
+	     		//stores the value in choice so it cane be later check using the scanner keyboard (initializes in choice)
+	     		while(choice!=1 && choice!=2)
+	     		//This while loop will check if choice does not equal both 1 and 2 and if so will run until it does, this is used to make sure the user chooses one of the specified numbers
+	     		{
+	     			System.out.print("That is not a valid number, please enter either 1 or 2: ");
+	     			//prompts the user that the input was not a valid number and prompts them to input 1 or 2 again
+	     			choice=keyboard.nextInt();
+	     			//initializes the input into choice so the while loop can check whether it was a valid input or not again
+	     			}
+	     			out:
+	     			for(int x=0;x<seats.length;x++)
+	     			//This for loop is meant to loop through the rows to see if there are any available seats left
+	     			{
+	     				for(int i=0;i<seats[x].length;i++)
+	     				//this loop is meant to loop through the columns to see if there are any available seats left and if so then  break
+	     				{
+	     					if(seats[x][i]!=0)
+	     					//This if statement checks if the seat at row x and column i is taken, if it is no 0 then it is not taken
+	     					{
+	     						break out;
+	     						//This will break the loop because a seat has been found
+	     					}
+	     					else if(x==seats.length-1 && i==seats[x].length-1)
+	     						//This checks if the loop has fully gone through and found no empty seats and if so runs the following code to break the while loop
+	     						{
+
+	     							System.out.println("There are no empty seats Left! Have a nice day!");
+
+	     							//prompts the user that there are no more seats left to reserve and to have a ncie day
+
+	     							totalFinish=true;
+
+	     							//sets totalFinish to equals true so the loops will finish
+
+	     						}
+
+	     					}
+
+	     				}
+	     				if(choice==1)
+
+	     					//This if statement is meant to check whether choice is equal to 1 so the program can run the following code to find the seat by the users specified location
+
+	     				{
+
+	     					System.out.print("Enter row: ");
+
+	     					//prompts the user to enter a row for their specified seat
+
+	     					int row=keyboard.nextInt();
+
+	     					//declares variable row as integer data type and initializes it as users input from scanner keyboard
+
+	     					while(row>9 ||row<1)
+
+	     						//This while loop is to check whether the users input was greater than 9 or less than 1 and if so runs the following code till row is equal to or between those two numbers. This is so the user does not input a number that is not a specified row
+
+	     					{
+
+	     						System.out.print("That is not a valid row, please choose a number from 1 to 9: ");
+
+	     						//prompts the user that it was not a valid row and to choose again
+
+	     						row=keyboard.nextInt();
+
+	     						//initializes row as the users input from the scanner object keyboard so the while loop can check the variable again
+
+	     					}
+
+	     					System.out.print("Enter seat: ");
+
+	     					//prompts the user to enter a seat so they can choose the seat based on the row
+
+	     					seat=keyboard.next().toUpperCase();
+
+	     					//initializes seat as the next input from the scanner object keyboard. Then uses the toUpperCase method to change all letters into upper case so the program does not differentiate between upper case and lower case
+
+	     					while(!seat.equals("A") && !seat.equals("B") && !seat.equals("C") && !seat.equals("D") && !seat.equals("E") && !seat.equals("F") && !seat.equals("G") && !seat.equals("H") && !seat.equals("I") &&!seat.equals("J"))
+
+	     					//This while loop is used to determine if seat does not equal one of the letters between A-J and if not runs since those are the only seats available
+
+	     					{
+
+	     						System.out.print("That is not a valid seat, please choose a seat from A to J: ");
+
+	     						//prompts the user that their seat was not a valid one and to input another one 
+
+	     						seat=keyboard.next().toUpperCase();
+
+	     						//initializes seat as the next input from the scanner object keyboard. Then uses the toUpperCase method to change all letters into upper case so the program does not differentiate between upper case and lower case
+
+	     					}
+
+	     					if(seats[(seats.length)-row][seat.charAt(0)-65]==0)
+
+	     						//This if statement is used to check whether the seat has been taken. All seats that are available will have integers of 10,20,30,40,50 but the seats taken are marked with 0. If the user chooses one of these seats, it cannot be booked again so the user must be told to book another seat
+
+	     					{
+
+	     						System.out.println("That seat is taken, please try again.");
+
+	     						//prompts the user that the seat has been taken and to try again with another value
+
+	     						continue Outer;
+
+	     						//This is used to skip the current iteration of the while loop Outer since the seat has been taken and the program needs to run once again for the user to choose the method of reserving a seat
+
+	     					}
+
+	     					else
+
+	     						//This else statement is used as an alternative if the seats at the specified row and seat does not equal 0 which means it has not been taken
+
+	     					{
+
+	     						seats[(seats.length)-row][seat.charAt(0)-65]=0;
+
+	     						//This sets the seat at that row and at the column equal to zero to symbolize that it has been reserved
+
+	     					}
+
+	     					System.out.println();
+
+	     				}
+
+	     			if(choice==2)
+
+	     				//This is mean to run if the user inputs 2 so the user wants to choose the seat based on price
+
+	     			{
+
+	     				System.out.print("Enter a price(10, 20, 30, 40, or 50): ");
+
+	     				//This is mean to prompt the user to choose the price of their seat that they wish to reserve
+
+	     				int price=keyboard.nextInt();
+
+	     				//This declares the variable price as an integer data type and to store the users input from the scanner object keyboard
+
+	     				while(price!=10 && price!=20 && price!=30 && price!=40 && price!=50)
+
+	     					//This while loop is meant to check whether the price inputed by the user in variable price does not equal to 10,20,30,40,50 and if so runs the following code till it equals one. This is used to make sure the user inputs a valid price and all other numbers than these are not valid.
+
+	     				{
+
+	     					System.out.print("That is not a valid price, please enter (10, 20, 30, 40, or 50): ");
+
+	     					//prompts the user that the price that they input was not valid and to input another price that is 10, 20 ,30, 40, or 50
+
+	     					price=keyboard.nextInt();
+
+	     					//initializes price as the users input from the scanner object keyboard so teh while loop may check the variable again
+
+	     				}	
+
+	     				Check:
+
+	     					//This labels the for loop as the name Check so we can break this for loop if a seat with price has been found
+
+	     				for(int x=0;x<seats.length;x++)
+
+	     			    	 //This for loop goes through the length of the row of seats so we can check each row whether there is a seat available with that price
+
+	     			     {
+
+	     			    	for(int i=0;i<seats[x].length;i++)
+
+	     			    		//This for loop foes through each column length at the specified row to see whether the specified seat has been taken by check the row and column of the array if it is equal to price and if it is then there is an open seat
+
+	     			    	{
+
+	     			    		if(seats[x][i]==price)
+
+	     			    			//This if statement is meant to run if there is a seat that is still equal to the price which means there is a seat available to reserve for that price
+
+	     			    			break Check;
+
+	     			    		//This is means to break the loop check since we have found that there is still a seat available for that price and we do not need to iterate through the for loop any further
+
+	     			    	} 
+
+	     			    	if(x==seats.length-1)
+
+	     			    		//This if statement is meant to check whether the variable that the Check for loop is incrementing is at its final number and if so and if the loop has not been broken yet, then this statement runs to show that there are no more seats available in that price range
+
+	     			    	{
+
+	     			    		System.out.println("There are no tickets in that price range, please try again.");
+
+	     			    		//prompts the user that there are no more seats in that price range since the loops have gone through all the seats and have declared there to be no more and to try again
+
+	     			    		continue Outer;
+
+	     			    		//This is meant to skip the current iteration since the specified price has been deemed no more since all seats in that price range have been taken so the suer will be sent back to the beginning so they can choose 1 or 2 based on their reserving method
+
+	     			    	}
+
+	     			     }
+
+	     				while(finish==false)
+
+	     					//This will loop till the boolean variable finish will equal true instead of false. This will happen once of the program has randomly chosen a seat from teh available seats for the user to reserve
+
+	     				{
+
+	     					int rowCheck=(int)(Math.random()*9);
+
+	     					//declares rowCheck as an integer data type and initializes it as a random number from 0-8 and casts it as an integer so program can check if that row at the randomly chosen seat it equal to the price chosen by the user
+
+	     					int seatCheck=(int)(Math.random()*10);
+
+	     					//declares seatCheck as an integer data type and initializes it as a random number from 0-9 and casts it as an integer so the program can check the randomly selected row and randomly selected  seat if it is equal to the price specified by the user
+
+	     					if(seats[rowCheck][seatCheck]==price)
+
+	     						//checks whether the randomly generated row and randomly generated seat if at that row and column in the array seats is equal to price and if so means it is available and the following code will run to book it for the user
+
+	     					{
+
+	     						seats[rowCheck][seatCheck]=0;
+
+	     						//sets the element at the specified row and column equal to 0 so the program knows it has been taken
+
+	     						holder=((char) (65+seatCheck));
+
+	     						//holder is then used to hold the 65+seatCheck so it can then be converted to a string with that specified ascii value (65 is A so if the program chose 0 then the program will convert it to A and so on)
+
+	     						seat=Character.toString(holder);
+
+	     						//the seat variable will then be initialized as the char holder and using the method.toString will be converted to a String
+
+	     						finish=true;
+
+	     						//After this the seat choosing of that price has ended and so we set finish to true to signify to the loop to finish
+
+	     						System.out.println("Your seat is in row "+(seats.length-rowCheck)+" seat "+seat+"\n");
+
+	     						//This prompts the user with the specific seat that they chose at the row and seat Letter
+
+	     					}
+
+	     				}
+
+	     				finish=false;
+
+	     				//sets the boolean variable equal to false to reset its variables so if the program comes back to the while loop, it will know to loop through since boolean finish is equal to finish and the seat has not been found
+
+	     			}
+
+	     			System.out.println("                        SEATS");
+
+	     			//prompts the user with the title of the table or seating chart
+
+	     			System.out.println("        A   B   C   D   E   F   G   H   I   J   ");
+
+	     			//prompts the user with the Columns, A-J
+
+	     			for(int x=0;x<seats.length;x++)
+
+	     				//This loops through the seats arrays rows using the length of the rows
+
+	     			{
+
+	     				System.out.print("Row "+(seats.length-(x))+"  ");
+
+	     				//prompts the user with the row numbers for the columns
+
+	     				for(int i=0;i<seats[x].length;i++)
+
+	     					//loops through the row with the amount of columns at that specified row x
+
+	     				{
+
+	     					if(seats[x][i]!=0)
+
+	     						//This if statement is then meant to check whether the array at that column and row is not equal to 0 and if so then it has not been reserved and will be displayed as it price
+
+	     						System.out.print(seats[x][i]+"  ");
+
+	     						//prompts the user with the price of that seat
+
+	     					else
+
+	     						//else which means the array seats at row x and column i is equal to 0 means that the seat has been taken and to print of XX to show it has been reserved
+
+	     						System.out.print("XX  ");
+
+	     						//prompts the user with XX to show that the seat has been reserved 
+
+	     				} 
+
+	     				System.out.println();
+
+	     				//increments the line by 1 for formatting to the next row
+
+	     			}
+
+	     			System.out.println();
+
+	     			//increments the line by 1 for formatting for the next loop iteration
+
+	     }//end of loop Outer
+	}//end of main method
+}//end of class
