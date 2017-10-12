@@ -1,0 +1,35 @@
+import java.io.*;
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+    Scanner keyboard=new Scanner(System.in);
+		System.out.print("");
+		int numStart=keyboard.nextInt();
+		System.out.print("");
+		int numEnd=keyboard.nextInt();
+		int count=0;
+		inner:
+		for(int x=numStart;x<=numEnd;x++)
+		{
+			String num=Integer.toString(x);
+			for(int i=0;i<num.length();i++)
+			{
+				if(num.charAt(i)=='2' ||num.charAt(i)=='3' ||num.charAt(i)=='4' ||num.charAt(i)=='5' ||num.charAt(i)=='7')
+					continue inner;
+				if(num.charAt(i)=='0' && num.charAt(num.length()-(i+1))!='0')
+					continue inner;
+				else if(num.charAt(i)=='6' && num.charAt(num.length()-(i+1))!='9')
+					continue inner;
+				else if(num.charAt(i)=='8' && num.charAt(num.length()-(i+1))!='8')
+					continue inner;
+				else if(num.charAt(i)=='9' && num.charAt(num.length()-(i+1))!='6')
+					continue inner;
+				else if(num.charAt(i)=='1' && num.charAt(num.length()-(i+1))!='1')
+					continue inner;
+			}
+			count++;
+		}
+		System.out.println(count);
+    }
+}
