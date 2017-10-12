@@ -1,0 +1,55 @@
+//Canadian Computing Competition: 2001 Stage 1, Junior #1
+//It is important to keep our computers safe and clean. 
+//Some people feel that computers should be well-dressed, also. 
+//For this question, you will write a program to print out a bow tie on the computer screen.
+//Your program should take as input the height HH of the bow tie, where HH is an odd positive integer greater than or equal to 5. 
+//A bow tie with HH rows (and 2H2H columns) should then be printed using the pattern shown below in the sample output.
+//Input Specification:
+//One line containing integer HH. You may assume that all input data will be valid.
+import java.io.*;
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+    Scanner keyboard=new Scanner(System.in);
+		System.out.print("");
+		int num=keyboard.nextInt();
+		for(int x=1;x<=num*2;x+=2)
+		{
+			int num1;
+			int space;
+			if(x>=num)
+			{
+				num1 = num-(x-num);
+				space = x-num;
+			}
+			else 
+			{
+				num1 = x;
+				space = num-x;
+			}
+			for(int i=1;i<=(num*2);i++)
+			{
+				if(i<=num && num1!=0)
+				{
+					System.out.print("*");
+					num1--;
+				}
+				else if(i<=num && num1==0)
+				{
+					System.out.print(" ");
+				}
+				else if(i>num && space!=0)
+				{
+					System.out.print(" ");
+					space--;
+				}
+				else
+				{
+					System.out.print("*");
+				}
+			}
+			System.out.println();
+		}
+    }
+}
