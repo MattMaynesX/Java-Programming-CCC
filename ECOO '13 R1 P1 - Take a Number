@@ -1,0 +1,43 @@
+import java.io.*;
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+    Scanner inputFile=new Scanner(System.in);
+        System.out.print("");
+		int initialNum=inputFile.nextInt();
+		String temp="nothing";
+		int waiting=0;
+		int servedToday=0;
+		int late=0;
+		while(!temp.equals("EOF"))
+		{
+			if(!temp.equals("nothing"))
+			{
+				System.out.println(late+" "+waiting+" "+initialNum);
+			}
+			temp=inputFile.next();
+			late=0;
+			waiting=0;
+			while(!temp.equals("CLOSE") && !temp.equals("EOF"))
+			{
+				servedToday=0;
+				if(temp.equals("TAKE"))
+				{
+					late++;
+					++waiting;
+					++initialNum;
+					if(initialNum>999)
+						initialNum=initialNum-999;
+				}
+				else if(temp.equals("SERVE"))
+				{ 
+					++servedToday;
+					--waiting;
+				}
+				System.out.print("");
+				temp=inputFile.next();
+			}
+		}
+	}
+}
