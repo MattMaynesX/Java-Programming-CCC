@@ -1,0 +1,42 @@
+import java.io.*;
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+    		Scanner keyboard=new Scanner(System.in);
+		System.out.print("");
+		int streams=keyboard.nextInt();
+		int operation=0;
+		ArrayList<Integer> current=new ArrayList<Integer>();
+		for(int x=0;x<streams;x++)
+		{
+			System.out.print("");
+			current.add(keyboard.nextInt());
+		}
+		while(operation!=77)
+		{
+			System.out.print("");
+			operation=keyboard.nextInt();
+			if(operation==99)
+			{
+				System.out.print("");
+				int stream=keyboard.nextInt();
+				System.out.print("");
+				int percentSplit=keyboard.nextInt();
+				current.add(stream, percentSplit*current.get(stream-1)/100);
+				current.add(stream+1, current.get(stream-1)-current.get(stream));
+				current.remove(stream-1);
+			}
+			else if(operation==88)
+			{
+				System.out.print("");
+				int stream=keyboard.nextInt();
+					current.add(stream, current.get(stream-1)+current.get(stream));
+					current.remove(stream+1);
+					current.remove(stream-1);
+			}
+		}
+		for(int temp : current)
+			System.out.print(temp+" ");
+    }
+}
