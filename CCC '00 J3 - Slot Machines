@@ -1,0 +1,50 @@
+import java.io.*;
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+    Scanner keyboard=new Scanner(System.in);
+		System.out.print("");
+		int numQuarter=keyboard.nextInt();
+		System.out.print("");
+		int start1=keyboard.nextInt();
+		System.out.print("");
+		int start2=keyboard.nextInt();
+		System.out.print("");
+		int start3=keyboard.nextInt();
+		int count=0;
+		while(numQuarter!=0)
+		{
+			++start1;
+			++count;
+			numQuarter--;
+			if(start1%35==0)
+			{
+				numQuarter+=30;
+			}
+			if(numQuarter==0)
+			{
+				break;
+			}
+			++start2;
+			++count;
+			numQuarter--;
+			if(start2%100==0)
+			{
+				numQuarter+=60;
+			}
+			if(numQuarter==0)
+			{
+				break;
+			}
+			++start3;
+			++count;
+			numQuarter--;
+			if(start3%10==0)
+			{
+				numQuarter+=9;
+			}
+		}
+		System.out.println("Martha plays "+count+" times before going broke.");
+    }
+}
