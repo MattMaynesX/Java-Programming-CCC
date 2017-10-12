@@ -1,0 +1,52 @@
+import java.io.*;
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+    Scanner keyboard=new Scanner(System.in);
+		HashMap <Integer, Integer> flowerBed=new HashMap<Integer, Integer>();
+		System.out.print("");
+		int numFlower=keyboard.nextInt();
+		int[] flowers=new int[numFlower];
+		int total=0;
+		System.out.print("");
+		for(int x=0;x<numFlower;x++)
+		{
+			flowers[x]=keyboard.nextInt();
+			total+=flowers[x];
+		}
+		System.out.print("");
+		int differences=keyboard.nextInt();
+		for(int x=0;x<differences;x++)
+		{
+			System.out.print("");
+			flowerBed.put(keyboard.nextInt()-1, keyboard.nextInt());
+		}
+		for(int temp : flowerBed.keySet())
+		{
+			if(flowers[temp]>=flowers[temp+1])
+			{
+				if(flowers[temp+1]>flowerBed.get(temp))
+				{
+					total-=flowerBed.get(temp);
+				}
+				else
+				{
+					total-=flowers[temp+1];
+				}
+			}
+			else
+			{
+				if(flowers[temp]>flowerBed.get(temp))
+				{
+					total-=flowerBed.get(temp);
+				}
+				else
+				{
+					total-=flowers[temp];
+				}
+			}
+		}
+		System.out.println(total);
+    }
+}
