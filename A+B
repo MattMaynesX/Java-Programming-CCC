@@ -1,0 +1,27 @@
+//The first line will contain an integer NN (1≤N≤1000001≤N≤100000), the number of addition problems Xyene needs to do. 
+//The next NN lines will each contain two space-separated integers whose absolute value is less than 10000000001000000000,
+//the two integers Xyene needs to add.
+//Output Specification
+//Output NN lines of one integer each, the solutions to the addition problems in order.
+import java.io.*;
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner keyboard=new Scanner(System.in);
+        System.out.print("");
+        int numTimes = keyboard.nextInt();
+        int[] answers = new int[numTimes];
+        for(int x = 0;x<numTimes;x++)
+        {
+            System.out.print("");
+            int num1 = keyboard.nextInt();
+            int num2 = keyboard.nextInt();
+            answers[x] = num1+num2;
+        }
+        for(int x=0;x<answers.length;x++)
+        {
+            System.out.println(answers[x]);
+        }
+    }
+}
