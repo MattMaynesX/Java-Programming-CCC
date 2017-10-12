@@ -1,0 +1,80 @@
+import java.io.*;
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+Scanner inputFile=new Scanner(System.in);
+		for(int l=0;l<10;l++)
+		{
+		System.out.print("");
+		int numMountains=inputFile.nextInt();
+		int[] mountains=new int[numMountains];
+		int[] views=new int[numMountains];
+		System.out.print("");
+		for(int x=0;x<numMountains;x++)
+		{
+			mountains[x]=inputFile.nextInt();
+		}
+		for(int x=0;x<mountains.length;x++)
+		{
+			for(int i=x+1;i<mountains.length;i++)
+			{
+				double slope=(mountains[x]-mountains[i])/(double)(0-(i-x));
+				inner:
+				for(int g=x+1;g<=i;g++)
+				{
+					if(slope<0 && i==g)
+					{
+						views[x]++;
+					}
+					else
+					{
+						if((g-x)*slope+mountains[x]<=mountains[g] && g!=i)
+						{
+							break inner;
+						}
+						else if(g==i)
+						{
+							views[x]++;
+						}
+					}
+				}
+			}
+			for(int i=x-1;i>=0;i--)
+			{
+				double slope=(mountains[x]-mountains[i])/(double)(0-(i-x));
+				secondInner:
+				for(int g=x-1;g>=i;g--)
+				{
+					if(slope>0 && x==i+1)
+					{
+						views[x]++;
+					}
+					else
+					{
+						if((g-x)*slope+mountains[x]<=mountains[g])
+						{
+							break secondInner;
+						}
+						else if(g==i+1)
+						{
+							views[x]++;
+						}
+					}
+				}
+			}
+		}
+		int max=views[0];
+		int maxIndex=0;
+		for(int x=0;x<views.length;x++)
+		{
+			if(max<views[x])
+			{
+				max=views[x];
+				maxIndex=x;
+			}
+		}
+		System.out.println(maxIndex+1);
+		}
+    }
+}
