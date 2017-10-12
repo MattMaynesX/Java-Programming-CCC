@@ -1,0 +1,28 @@
+//Help Mr. Sidhu, your favourite math teacher, find the median mark on a class test. 
+//The first line will consist of NN (1≤N≤1000)(1≤N≤1000), the number of marks. 
+//This line will be followed by NN lines with each containing a integer mark (1≤mark≤1000)(1≤mark≤1000). 
+//Round to the nearest integer if necessary. We use standard mathematical conventions for rounding.
+
+import java.io.*;
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+    Scanner keyboard=new Scanner(System.in);
+		System.out.print("");
+		int num=keyboard.nextInt();
+		int[] marks=new int[num];
+		for(int x=0;x<num;x++)
+		{
+			System.out.print("");
+			marks[x]=keyboard.nextInt();
+		}
+		Arrays.sort(marks);
+		double median;
+		if(num%2.0==0)
+			median = (marks[marks.length/2-1] + marks[marks.length/2])/2.0;
+		else
+			median = marks[marks.length/2];
+		System.out.printf("%d",Math.round(median));
+    }
+}
