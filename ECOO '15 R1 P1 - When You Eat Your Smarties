@@ -1,0 +1,92 @@
+import java.io.*;
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+    Scanner inputFile=new Scanner(System.in);
+		int red=0,brown=0,violet=0,green=0,yellow=0,blue=0,orange=0,pink=0,time=0;
+		String color="nothing";
+		for(int m=0;m<10;m++)
+		{
+		    System.out.print("");
+			color=inputFile.nextLine();
+			while(!color.equals("end of box"))
+			{
+				if(color.equals("red"))
+				{
+					red++;
+				}
+				else if(color.equals("brown"))
+				{
+					brown++;
+				}
+				else if(color.equals("pink"))
+				{
+					pink++;
+				}
+				else if(color.equals("green"))
+				{
+					green++;
+				}	
+				else if(color.equals("yellow"))
+				{
+					yellow++;
+				}
+				else if(color.equals("violet"))
+				{
+					violet++;
+				}
+				else if(color.equals("blue"))
+				{
+					blue++;
+				}
+				else if(color.equals("orange"))
+				{
+					orange++;
+				}
+				color=inputFile.nextLine();
+			}
+			if(brown%7.0==0)
+				time+=(brown/7)*13;
+			else
+				time+=((brown/7)+1)*13;
+			if(yellow%7.0==0)
+				time+=(yellow/7)*13;
+			else
+				time+=((yellow/7)+1)*13;
+			if(pink%7.0==0)
+				time+=(pink/7)*13;
+			else
+				time+=((pink/7)+1)*13;
+			if(orange%7.0==0)
+				time+=(orange/7)*13;
+			else
+				time+=((orange/7)+1)*13;
+			if(blue%7.0==0)
+				time+=(blue/7)*13;
+			else
+				time+=((blue/7)+1)*13;
+			if(green%7.0==0)
+				time+=(green/7)*13;
+			else
+				time+=((green/7)+1)*13;
+			if(violet%7.0==0)
+				time+=(violet/7)*13;
+			else
+				time+=((violet/7)+1)*13;
+			time+=red*16;
+			System.out.println(time);
+			time=0;
+			red=0;
+			brown=0;
+			violet=0;
+			green=0;
+			yellow=0;
+			blue=0;
+			orange=0;
+			pink=0;
+			time=0;
+			
+		}
+    }
+}
